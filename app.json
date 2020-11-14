@@ -11,7 +11,6 @@
       "backgroundColor": "#ffffff"
     },
     "packagerOpts": {
-      "config": "metro.config.js",
       "sourceExts": [
         "expo.ts",
         "expo.tsx",
