@@ -1,55 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import data from './data/data';
-import { Transition, Transitioning } from 'react-native-reanimated';
-
-const transition = (
-  <Transition.Together>
-    <Transition.In type='fade' durationMs={200} />
-    <Transition.Change />
-    <Transition.Out type='fade' durationMs={200} />
-  </Transition.Together>
-);
+import { Animated, StyleSheet, Text, View } from 'react-native';
 
 export default function App() {
-  const [currentIndex, setCurrentIndex] = React.useState(null);
-  const ref = React.useRef();
-
+  const [fadeValue, setFadeValue] = React.useState(new Animated.Value(0))
+ 
   return (
-    <Transitioning.View
-      ref={ref}
-      transition={transition}
-      style={styles.container}
-    >
-      <StatusBar hidden />
-      {data.map(({ bg, color, category, subCategories }, index) => {
-        return (
-          <TouchableOpacity
-            key={category}
-            onPress={() => {
-              ref.current.animateNextTransition();
-              setCurrentIndex(index === currentIndex ? null : index);
-            }}
-            style={styles.cardContainer}
-            activeOpacity={0.9}
-          >
-            <View style={[styles.card, { backgroundColor: bg }]}>
-              <Text style={[styles.heading, { color }]}>{category}</Text>
-              {index === currentIndex && (
-                <View style={styles.subCategoriesList}>
-                  {subCategories.map((subCategory) => (
-                    <Text key={subCategory} style={[styles.body, { color }]}>
-                      {subCategory}
-                    </Text>
-                  ))}
-                </View>
-              )}
-            </View>
-          </TouchableOpacity>
-        );
-      })}
-    </Transitioning.View>
+    <View style={styles.container}>
+      {/* <Text>Open up App.tsx to start working on your app!</Text>
+      <StatusBar style="auto" /> */}
+      <Animated.View style={styles.animationView}></Animated.View>
+    </View>
   );
 }
 
@@ -57,28 +18,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    justifyContent: 'center',
-  },
-  cardContainer: {
-    flexGrow: 1,
-  },
-  card: {
-    flexGrow: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  heading: {
-    fontSize: 38,
-    fontWeight: '900',
-    textTransform: 'uppercase',
-    letterSpacing: -2,
-  },
-  body: {
-    fontSize: 20,
-    lineHeight: 20 * 1.5,
-    textAlign: 'center',
-  },
-  subCategoriesList: {
-    marginTop: 20,
-  },
+  animationView: {
+    width: 100,
+    height: 100,
+    backgroundColor: 'skyblue'
+  }
 });
