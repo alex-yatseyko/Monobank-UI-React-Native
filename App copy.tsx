@@ -9,7 +9,7 @@ export default function App() {
     <View style={styles.container}>
       {/* <Text>Open up App.tsx to start working on your app!</Text>
       <StatusBar style="auto" /> */}
-      <Animated.View style={styles.animationView}> </Animated.View>
+      <Animated.View style={styles.animationView}></Animated.View>
     </View>
   );
 }
